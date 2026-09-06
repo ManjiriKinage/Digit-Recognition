@@ -1,4 +1,5 @@
 import os
+import sys
 import re
 import io
 import base64
@@ -7,6 +8,14 @@ import cv2
 from PIL import Image
 from flask import Flask, render_template, request, jsonify
 import tensorflow as tf
+
+# Ensure UTF-8 output on Windows console
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
 
 app = Flask(__name__)
 

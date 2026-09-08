@@ -1,4 +1,15 @@
+---
+title: Handwritten Digit Recognition
+emoji: 🖋️
+colorFrom: indigo
+colorTo: purple
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # 🖋️ Handwritten Digit Recognition System (MNIST + CNN + Flask)
+
 
 An end-to-end deep learning web application that recognizes handwritten digits (0–9) drawn interactively on an HTML5 canvas or uploaded via image files. Powered by a Convolutional Neural Network (CNN) trained on the MNIST dataset, served by a Flask REST backend, with real-time probability distribution visualization.
 
@@ -157,3 +168,49 @@ Performs digit classification.
   "processed_image": "data:image/png;base64,..."
 }
 ```
+
+---
+
+## 🌐 Deployment Guide
+
+### Option 1: Deploy on Render (Recommended & Free)
+1. Push this project repository to GitHub.
+2. Sign up / Log in to [Render](https://render.com).
+3. Click **New +** → **Web Service** and connect your GitHub repository.
+4. Render will automatically detect the settings from [render.yaml](file:///d:/projects2/Digit%20Recognition/render.yaml) or you can manually configure:
+   - **Environment**: `Python`
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --threads 2 --timeout 120`
+5. Click **Create Web Service**.
+
+---
+
+### Option 2: Deploy on Railway
+1. Push your repository to GitHub.
+2. Go to [Railway](https://railway.app) and click **New Project** → **Deploy from GitHub repo**.
+3. Railway automatically detects the [Dockerfile](file:///d:/projects2/Digit%20Recognition/Dockerfile) / [Procfile](file:///d:/projects2/Digit%20Recognition/Procfile) and deploys your service.
+
+---
+
+### Option 3: Deploy on Hugging Face Spaces (Free ML Hosting)
+1. Go to [Hugging Face Spaces](https://huggingface.co/spaces) and click **Create new Space**.
+2. Select **Docker** as the SDK (Blank template) and choose **Public** or **Private**.
+3. Clone the Space repo or upload your project files (`app.py`, `templates/`, `static/`, `digit_model.keras`, `requirements.txt`, `Dockerfile`).
+4. Hugging Face will automatically build the container and serve the app at `https://huggingface.co/spaces/YOUR_USERNAME/SPACE_NAME`.
+
+---
+
+### Option 4: Deploy using Docker (Any VPS / Cloud)
+
+#### Build Docker Image:
+```bash
+docker build -t digit-recognition:latest .
+```
+
+#### Run Container:
+```bash
+docker run -d -p 5000:5000 --name digit-app digit-recognition:latest
+```
+
+Access the app at `http://localhost:5000`.
+

@@ -1,0 +1,14 @@
+.git
+.gitignore
+.gitattributes
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+venv/
+.venv/
+env/
+.pytest_cache/
+training_history.png
+confusion_matrix.png
